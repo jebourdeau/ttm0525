@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: Initiative.initiativeprojet.services.InitiativeTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.016 s <<< FAILURE! -- in Initiative.initiativeprojet.services.InitiativeTest
+Initiative.initiativeprojet.services.InitiativeTest -- Time elapsed: 0.016 s <<< ERROR!
+java.lang.NoClassDefFoundError: ProjetService
+	at java.base/java.lang.Class.getDeclaredFields0(Native Method)
+	at java.base/java.lang.Class.privateGetDeclaredFields(Class.java:3545)
+	at java.base/java.lang.Class.getDeclaredFields(Class.java:2601)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+Caused by: java.lang.ClassNotFoundException: ProjetService
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
+	... 4 more
+

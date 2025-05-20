@@ -1,0 +1,16 @@
+.App-header {
+    align-items: center;
+    justify-content: center;
+}
+.match{
+    max-height: 140px;
+    /* margin-bottom: 20px; */
+    padding-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+}
+.backhome{
+    display: flex;
+    justify-content: flex-start;
+    margin: 10px;
+}

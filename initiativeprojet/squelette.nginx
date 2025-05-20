@@ -1,0 +1,16 @@
+src
+└── main
+    ├── java
+    │   └── com.example.entraide
+    │       ├── config           # Spring Security, JWT config
+    │       ├── controller       # REST endpoints
+    │       ├── dto              # DTOs pour requêtes/réponses
+    │       ├── model            # Entities (User, Parrain, Projet, etc.)
+    │       ├── repository       # JPA Repositories
+    │       ├── service          # Business logic
+    │       └── EntrAideApp.java # Point d'entrée
+    └── resources
+        ├── application.yml      # Configuration (DB, JWT)
+        └── db
+            └── migration
+                └── V1__init.sql # Flyway migration de base

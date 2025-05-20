@@ -1,0 +1,29 @@
+.sidebar {
+    width: 200px;
+    background-color: #e31766;
+    padding: 15px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin: 10px 0;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar a:hover {
+    color: #007bff;
+}
+
+.sidebar a svg {
+    margin-right: 8px;
+}

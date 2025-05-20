@@ -1,0 +1,6 @@
+body{
+    max-width: 100%;
+    display: block;
+    flex: 1;
+    max-height: 100%;
+}

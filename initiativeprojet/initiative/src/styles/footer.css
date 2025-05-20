@@ -1,0 +1,53 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+/* .main-content {
+    flex: 1;
+} */
+
+.footer-content {
+    width: 100%;
+    text-align: center;
+    color: black;
+}
+
+.footer-content a {
+    color: gray;
+    text-decoration: none;
+    align-items: center;
+    gap: 0.5rem;
+    margin: auto;
+}
+
+.favicon {
+    font-size: 2rem;
+}
+
+.footer-content a:hover .favicon {
+    color: #4267B2;
+}
+
+.logo {
+    margin-top: 1rem;
+    width: 150px;
+}
+
+.réseau {
+    color: #71c920;
+    padding-top:auto;
+    padding: 5px;
+    margin: 5px;
+    border-style: solid;
+    border-radius: 10%;
+    background-color: #656664bb;
+    flex-direction: row;
+}
