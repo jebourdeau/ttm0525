@@ -23,7 +23,6 @@ function App() {
         <Route path="/notfound" element={<NotFound/>} />
         <Route path="/users" element={<UserList/>} />
         <Route path="/apropos" element={<Apropos/>} />
-        <Route path="/register" element={<Registeruser/>} />
         <Route path="/messagerie" element={<Messagerie/>} />
         <Route path="/profils" element={<Profils/>} />
         <Route path="/rendezvous" element={<Rendezvous/>} />

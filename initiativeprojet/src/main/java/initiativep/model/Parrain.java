@@ -13,7 +13,7 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name= "parrains")
+@Table(name= "parrain")
 public class Parrain extends User{
 
     private String entreprise;

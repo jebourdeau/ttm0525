@@ -18,7 +18,9 @@ public class Projet {
     private Long id;
     private String title;
     private String description;
-    private Long userId;
+
+    @ManyToOne
+    private User user;
 
     @ManyToMany
     private List<User> membres;

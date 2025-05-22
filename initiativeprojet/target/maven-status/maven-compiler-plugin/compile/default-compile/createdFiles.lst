@@ -1,0 +1,6 @@
+initiativep\model\Document$DocumentBuilder.class
+initiativep\dto\DocumentDto.class
+initiativep\controller\DocumentController.class
+initiativep\services\DocumentService.class
+initiativep\repository\DocumentRepository.class
+initiativep\model\Document.class

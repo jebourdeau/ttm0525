@@ -1,22 +1,27 @@
 package initiativep.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.HashSet;
-import java.util.Set;
-
+@Data
 @Entity
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Porteur extends User{
+@Table(name = "porteur")
+public class Porteur{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String title;
+    private String description;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "porteur_roles",
-            joinColumns = @JoinColumn(name ="projet_id")
-    )
-    private Projet projet;
+    @OneToOne
+    @JoinColumn(name = "porteur_id", nullable = false)
+    private Porteur porteur;
+
+    @ManyToOne
+    @JoinColumn(name = "parrain_id")
+    private Parrain parrain;
 }

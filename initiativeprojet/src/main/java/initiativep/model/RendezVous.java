@@ -20,4 +20,6 @@ public class RendezVous {
     private LocalTime time;
     private String details;
 
+    @ManyToOne
+    private User user;
 }

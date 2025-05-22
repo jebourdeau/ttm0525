@@ -4,6 +4,7 @@ import initiativep.dto.UserDto;
 import initiativep.repository.UserRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,4 +53,7 @@ public class UserService{
         return user;
     }
 
+    public Optional<User> findById(Long id) {
+        return userRepository.findById(id);
+    }
 }

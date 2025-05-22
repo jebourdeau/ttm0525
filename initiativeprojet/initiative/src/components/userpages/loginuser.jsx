@@ -36,7 +36,6 @@ export const Loginuser = () => {
                 <input type='text' name='Identifiant' placeholder='Identifiant'/>
                 <label title="mot_de_passe">Mot de Passse</label>
                 <input type='text' name='Mot de passe' placeholder='Password'/>
-            
                 <input type='submit' className='button_submit'></input>
             </form>
             </div>

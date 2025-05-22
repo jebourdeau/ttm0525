@@ -16,7 +16,6 @@ public class JwtTokenProvider {
     @Value("${jwt.expiration}")
     private long jwtExpirationInMs;
 
-    // Generate a JWT token using the username as subject.
 
     public String generateToken(String username) {
         Date now = new Date();
@@ -29,7 +28,6 @@ public class JwtTokenProvider {
         .signWith(SignatureAlgorithm.HS512, jwtSecret.getBytes())
         .compact();
 }
-    // Extract username from JWT token.
     public String getUsernameFromJWT(String token) {
         Claims claims = Jwts.parser()
         .setSigningKey(jwtSecret.getBytes())
@@ -37,7 +35,6 @@ public class JwtTokenProvider {
         .getBody();
         return claims.getSubject();
     }
-    // Validate JWT token.
     public boolean validateToken(String authToken) {
         try {
             Jwts.parser().setSigningKey(jwtSecret.getBytes()).parseClaimsJws(authToken);

@@ -12,7 +12,7 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Admins")
+@Table(name = "admin")
 public class Admin extends User {
 
         @ManyToMany(fetch = FetchType.EAGER)

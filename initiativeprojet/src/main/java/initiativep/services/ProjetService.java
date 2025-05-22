@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
 
 @Service
 public class ProjetService {
@@ -44,16 +46,17 @@ public class ProjetService {
         projetDto.setId(projet.getId());
         projetDto.setTitle(projet.getTitle());
         projetDto.setDescription(projet.getDescription());
-        projetDto.setUserId(projet.getUserId());
+        projetDto.setUserId(projet.getUser().getId());
         return projetDto;
     }
 
     private Projet convertToEntity(ProjetDto projetDto) {
+        Optional<User> user = userRepository.findUserById(projetDto.getUserId());
         Projet projet = new Projet();
         projet.setId(projetDto.getId());
         projet.setTitle(projetDto.getTitle());
         projet.setDescription(projetDto.getDescription());
-        projet.setUserId(projetDto.getUserId());
+        projet.setUser(user.orElseThrow());
         return projet;
     }
 
@@ -78,10 +81,10 @@ public class ProjetService {
         return projetRepository.save(projet);
     }
 
-    public Projet updateProjet(Long id, ProjetDto projetDto) {
-        Projet projet = projetRepository.getReferenceById(id);
-        projet.setId(projetDto.getId());
-        projet.set(projet.getName());
-        return projetRepository.save(projet);
+    public ProjetDto save(ProjetDto projetDto) {
+        if (projetRepository.existsById(projetDto.getId())) {
+            throw new IllegalArgumentException("Ce porteur a déjà un projet.");
+        }return new ProjetDto();
     }
+
 }
