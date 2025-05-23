@@ -14,6 +14,9 @@ import java.util.Set;
 @AllArgsConstructor
 @Table(name = "admin")
 public class Admin extends User {
+        @Id
+        private Long id;
+        private String username;
 
         @ManyToMany(fetch = FetchType.EAGER)
         @JoinTable(

@@ -11,7 +11,5 @@ import initiativep.model.Parrain;
 
 @Repository
 public interface ParrainRepository extends JpaRepository<Parrain, Long> {
-    Optional<Parrain> findByName(String name);
-    Optional<Parrain> findByEmail(String email);
     Optional<Parrain>findbyIdParrain(Long id);
 }

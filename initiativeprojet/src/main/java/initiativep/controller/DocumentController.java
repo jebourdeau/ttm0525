@@ -22,7 +22,7 @@ public class DocumentController {
         this.documentService= documentService;
     }
     @PostMapping("/upload")
-    public String uploadFile(@RequestParam('file'), MultipartFile file){
+    public String uploadFile(@RequestParam("file") MultipartFile file){
         return documentService.storeFile(file);
     }
     @GetMapping("/download/{filename: .+")

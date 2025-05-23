@@ -10,12 +10,13 @@ import java.util.Set;
 @Getter
 @Entity
 @Setter
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name= "parrain")
 public class Parrain extends User{
-
+    @Id
+    private Long id;
+    private String username;
     private String entreprise;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -24,6 +25,7 @@ public class Parrain extends User{
             joinColumns = @JoinColumn(name ="parrain_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
+
     private Set<Role> roles = new HashSet<>();
     @OneToMany(mappedBy = "parrain")
     private List<Projet> projetsEncadres;
