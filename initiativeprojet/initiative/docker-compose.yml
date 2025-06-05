@@ -1,0 +1,43 @@
+services:
+
+  api:
+    image: registry.nocturlab.fr/jbourdeau/initiative
+    depends_on:
+    - db
+    networks:
+    - traefik_default
+    - api
+    ports:
+    - 8080:8080
+    labels:
+    - "traefic.enabled=true"
+    - "traefik.http.routers.initiative-front.rule=Host(`jbourdeau.nocturlab.fr`)"
+    - "traefik.http.services.initiative-front.loadbalancer.server.port=8080"
+    environment:
+    POSTGRES_HOST: db:5432
+    POSTGRES_USER: postgres
+    POSTGRES_DB: initiative
+    POSTGRES_PASSWORD: postgres
+    HOST: 0.0.0.0
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: initiative
+    volumes:
+      - db data:/var/lib/postgresql/data
+    networks:
+      - api
+
+volumes:
+  db_data:
+networks:
+  db:
+  traefik_default:
+  external: true
+api:
+
+web:
+  external: true

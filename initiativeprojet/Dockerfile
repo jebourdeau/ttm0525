@@ -5,8 +5,7 @@ WORKDIR /app
 COPY package*.json ./
 COPY . .
 
-RUN npm install &&
-    npm run build
+RUN npm install && npm run build
 
 FROM temurin:21-jre-alpine
 

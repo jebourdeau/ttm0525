@@ -1,16 +1,14 @@
 package initiativep.services;
 
 import initiativep.dto.UserDto;
+import initiativep.model.User;
 import initiativep.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import initiativep.model.User;
 
 @Service
 public class UserService{
@@ -18,11 +16,17 @@ public class UserService{
     @Autowired
     UserRepository userRepository;
 
-
     public List<UserDto> getAllUsers(){
         return 
         userRepository.findAll().stream().map(this::convertToDTO).collect(Collectors.toList());
     }
+    public Optional<User>findByUsername(String username){
+        return userRepository.findByUsername(username);
+    }
+    public Optional<User> findById(Long id){
+        return userRepository.findById(id);
+    }
+
     public UserDto getUserById(Long id){
         return userRepository.findById(id).map(this::convertToDTO).orElse(null);
     }
@@ -53,7 +57,6 @@ public class UserService{
         return user;
     }
 
-    public Optional<User> findById(Long id) {
-        return userRepository.findById(id);
-    }
+
+
 }
