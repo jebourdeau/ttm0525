@@ -1,6 +1,3 @@
-import React, { useEffect, useState } from 'react';
-import '../../../styles/profils.css';
-
 
 import React, { useState, useEffect } from 'react';
 import '../../../styles/profils.css';

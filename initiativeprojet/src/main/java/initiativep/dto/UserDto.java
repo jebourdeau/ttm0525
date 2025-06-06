@@ -1,19 +1,20 @@
 package initiativep.dto;
-
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-@Getter
-@Setter
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class UserDto {
+
     private Long id;
     private String username;
-    private int age;
     private String email;
+    private String password;
     private String role;
     private String projet;
-    private String password;
+    private int age;
 }

@@ -14,32 +14,67 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import { Accueil } from './components/pages/accueil';
 import {Documents} from './components/pages/boitesOutils/documents';
 
-function App() {
-  const { auth } = useAuth();
 
-  if (!auth){
-    return <Loginuser/>;
-  }
-  
+function App() {
   return (
     <AuthProvider>
-    <BrowserRouter>
-    <Header/>
-    <Body/>
-    <Routes>
-        <Route path="/login" element={<Loginuser/>} />
-        <Route path="/home" element={<Accueil/>} />
-        <Route path="/notfound" element={<NotFound/>} />
-        <Route path="/apropos" element={<Apropos/>} />
-        <Route path="/documents" element={<Documents/>} />
-        <Route path="/messagerie" element={<Messagerie/>} />
-        <Route path="/profils" element={<Profils/>} />
-        <Route path="/rendezvous" element={<Rendezvous/>} />
-    </Routes>
-    <Footer/>
-  </BrowserRouter>
-  </AuthProvider>
+      <BrowserRouter>
+        <MainApp />
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
+
+function MainApp() {
+  const { auth } = useAuth();
+
+  if (!auth) {
+    return <Loginuser />;
+  }
+
+  return (
+    <>
+      <Header />
+      <Body />
+      <Routes>
+        <Route path="/login" element={<Loginuser />} />
+        <Route path="/home" element={<Accueil />} />
+        <Route path="/notfound" element={<NotFound />} />
+        <Route path="/apropos" element={<Apropos />} />
+        <Route path="/documents" element={<Documents />} />
+        <Route path="/messagerie" element={<Messagerie />} />
+        <Route path="/profils" element={<Profils />} />
+        <Route path="/rendezvous" element={<Rendezvous />} />
+      </Routes>
+      <Footer />
+    </>
+  );
+}
+
+
+//   if (!auth){
+//     return <Loginuser/>;
+//   }
+//
+//   return (
+//     <AuthProvider>
+//     <BrowserRouter>
+//     <Header/>
+//     <Body/>
+//     <Routes>
+//         <Route path="/login" element={<Loginuser/>} />
+//         <Route path="/home" element={<Accueil/>} />
+//         <Route path="/notfound" element={<NotFound/>} />
+//         <Route path="/apropos" element={<Apropos/>} />
+//         <Route path="/documents" element={<Documents/>} />
+//         <Route path="/messagerie" element={<Messagerie/>} />
+//         <Route path="/profils" element={<Profils/>} />
+//         <Route path="/rendezvous" element={<Rendezvous/>} />
+//     </Routes>
+//     <Footer/>
+//   </BrowserRouter>
+//   </AuthProvider>
+//   );
+
 
 export default App;

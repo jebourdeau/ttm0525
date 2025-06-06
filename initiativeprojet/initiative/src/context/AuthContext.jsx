@@ -16,15 +16,22 @@ export const AuthProvider = ({ children }) => {
         throw error;
         }
     };
-
-    const register = async (username, password) => {
+    const register = async (username, password, role) => {
         try {
-        const data = await loginService.register(username, password);
-        setAuth(data);
-        return true;
+            const response = await fetch('http://localhost:8080/users', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password, role }),
+            });
+
+            if (!response.ok) return false;
+
+            const data = await response.json();
+            setAuth(data);
+            return true;
         } catch (error) {
-        console.error('Registration error:', error);
-        return false;
+            console.error('Erreur lors de l’inscription :', error);
+            return false;
         }
     };
 

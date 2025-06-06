@@ -56,7 +56,4 @@ public class UserService{
         user.setProjet(userDto.getProjet());
         return user;
     }
-
-
-
 }

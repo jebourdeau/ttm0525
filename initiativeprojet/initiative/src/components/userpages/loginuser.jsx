@@ -4,6 +4,7 @@ import { useAuth } from "../../context/AuthContext";
 import Loader from "../structure/Loader";
 
 export const Loginuser = () => {
+    const [role, setRole] = useState('UTILISATEUR');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -18,7 +19,7 @@ export const Loginuser = () => {
 
         const success = isLogin
         ? await login(username, password)
-        : await register(username, password);
+        : await register(username, password, role);
 
         if (!success) {
         setError(isLogin ? 'Échec de la connexion' : 'Échec de l\'inscription');
@@ -49,6 +50,16 @@ export const Loginuser = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             />
+            {!isLogin && (
+            <>
+                <label>Rôle</label>
+                <select value={role} onChange={(e) => setRole(e.target.value)}>
+                <option value="UTILISATEUR">Utilisateur</option>
+                <option value="PARRAIN">Parrain</option>
+                <option value="ADMIN">Admin</option>
+                </select>
+            </>
+            )}
             <input
             type="submit"
             className="button_submit"
