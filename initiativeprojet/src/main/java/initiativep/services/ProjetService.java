@@ -4,8 +4,8 @@ import initiativep.dto.ProjetDto;
 import initiativep.model.Porteur;
 import initiativep.model.Projet;
 import initiativep.model.User;
-import initiativep.repository.ProjetRepository;
-import initiativep.repository.UserRepository;
+import initiativep.repository.jpa.ProjetRepository;
+import initiativep.repository.jpa.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,12 +46,12 @@ public class ProjetService {
         projetDto.setId(projet.getId());
         projetDto.setTitle(projet.getTitle());
         projetDto.setDescription(projet.getDescription());
-        projetDto.setUserId(projet.getUser().getId());
+        projetDto.setUserId(projet.getUser().getUsername());
         return projetDto;
     }
 
     private Projet convertToEntity(ProjetDto projetDto) {
-        Optional<User> user = userRepository.findUserById(projetDto.getUserId());
+        Optional<User> user = userRepository.findByUsername(projetDto.getUserId());
         Projet projet = new Projet();
         projet.setId(projetDto.getId());
         projet.setTitle(projetDto.getTitle());
@@ -60,7 +60,7 @@ public class ProjetService {
         return projet;
     }
 
-    public Projet creationProjet(long idUser, String nomProjet) {
+    public Projet creationProjet(String idUser, String nomProjet) {
         return this.creationProjet(idUser, nomProjet, new ArrayList<>());
     }
 
@@ -68,7 +68,7 @@ public class ProjetService {
         projetRepository.deleteById(id);
     }
 
-    public Projet creationProjet(long idUser, String nomProjet, List<User> membres)
+    public Projet creationProjet(String idUser, String nomProjet, List<User> membres)
             throws NoSuchElementException {
         User user = userRepository.findById(idUser).orElseThrow();
 
@@ -77,6 +77,7 @@ public class ProjetService {
                 .title("")
                 .membres(membres)
                 .build();
+
 
         return projetRepository.save(projet);
     }

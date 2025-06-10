@@ -5,7 +5,6 @@ import initiativep.security.JwtService;
 import initiativep.security.JwtTokenProvider;
 import initiativep.services.AuthService;
 import jakarta.annotation.security.PermitAll;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,7 +13,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 
 import initiativep.services.UserService;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,6 +46,10 @@ public class AuthController {
         );
         String jwt = tokenProvider.generateToken(authentication.getName());
         return ResponseEntity.ok(new JwtAuthenticationResponse(jwt,null, null, null));
+    }
+    @PostMapping("/register")
+    public UserDto createUser(@RequestBody UserDto userDto){
+        return userService.createUSer(userDto);
     }
     @PostMapping("/logout")
     @PermitAll

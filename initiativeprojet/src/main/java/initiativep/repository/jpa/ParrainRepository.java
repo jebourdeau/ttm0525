@@ -1,4 +1,4 @@
-package initiativep.repository;
+package initiativep.repository.jpa;
 
 import java.util.Optional;
 
@@ -10,6 +10,5 @@ import initiativep.model.Parrain;
 
 
 @Repository
-public interface ParrainRepository extends JpaRepository<Parrain, Long> {
-    Optional<Parrain>findbyIdParrain(Long id);
+public interface ParrainRepository extends JpaRepository<Parrain, String> {
 }

@@ -2,7 +2,7 @@ package initiativep.controller;
 
 import java.util.List;
 
-import initiativep.repository.UserRepository;
+import initiativep.repository.jpa.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -39,15 +39,11 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public UserDto getUserById(@PathVariable Long id){
+    public UserDto getUserById(@PathVariable String id){
         return userService.getUserById(id);
     }
-    @PostMapping
-    public UserDto createUser(@RequestBody UserDto userDto){
-        return userService.createUSer(userDto);
-    }
      @DeleteMapping("/{id}")
-     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+     public ResponseEntity<Void> deleteUser(@PathVariable String id) {
          userService.deleteUser(id);
          return  ResponseEntity.noContent().build();
      }

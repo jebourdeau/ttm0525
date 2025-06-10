@@ -1,4 +1,4 @@
-package initiativep.repository;
+package initiativep.repository.jpa;
 
 import initiativep.model.RendezVous;
 import org.springframework.data.jpa.repository.JpaRepository;

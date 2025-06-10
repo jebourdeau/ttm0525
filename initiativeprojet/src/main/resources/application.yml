@@ -12,6 +12,10 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: none
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/initiativep
+
 flyway:
   url: jdbc:postgresql://localhost:5432/InitiativeProjet
   username: postgres
@@ -23,6 +27,7 @@ springdoc:
     path: /api-docs
   swagger-ui:
     path: /docs
+
 jwt:
   secret: B#MaYYnJCwe5|?=G
   expiration: 3600

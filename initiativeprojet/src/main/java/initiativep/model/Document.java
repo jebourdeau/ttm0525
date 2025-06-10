@@ -15,10 +15,9 @@ import lombok.NoArgsConstructor;
 public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
-    @ManyToOne(optional = false)
-    private User user;
+    private String user;
 
     private String filename;
     private String contentType;

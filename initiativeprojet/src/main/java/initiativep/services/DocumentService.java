@@ -8,10 +8,10 @@ import java.util.Optional;
 
 public interface DocumentService {
     Document saveDocument(Document document);
-    Optional<Document> findById(Long id);
+    Optional<Document> findById(String id);
     List<Document> findAll();
-    List<Document> findByUserId(Long userId);
-    void deleteDocument(Long id);
+    List<Document> findByUser(String userId);
+    void deleteDocument(String id);
 
 }
 

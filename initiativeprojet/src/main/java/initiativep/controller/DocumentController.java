@@ -54,14 +54,14 @@ public class DocumentController {
                 .contentType(file.getContentType())
                 .data(file.getBytes())
                 .description(description)
-                .user(user)
+                .user(toString())
                 .build();
         documentService.saveDocument(document);
         return "redirect:/documents";
     }
 
     @GetMapping("/download/{id}")
-    public ResponseEntity<byte[]> downloadDocument(@PathVariable Long id) {
+    public ResponseEntity<byte[]> downloadDocument(@PathVariable String id) {
         Document document = documentService.findById(id).orElseThrow(() -> new RuntimeException("Document not found"));
         return ResponseEntity.ok()
                 .header("Content-Disposition", "attachment; filename=\"" + document.getFilename() + "\"")
@@ -70,7 +70,7 @@ public class DocumentController {
     }
 
     @PostMapping("/delete/{id}")
-    public String deleteDocument(@PathVariable Long id) {
+    public String deleteDocument(@PathVariable String id) {
         documentService.deleteDocument(id);
         return "redirect:/documents";
     }

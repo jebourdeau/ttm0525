@@ -13,23 +13,24 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Inheritance(strategy = InheritanceType.JOINED)
+//@DiscriminatorColumn(name="role",
+//        discriminatorType = DiscriminatorType.STRING)
 public class User {
-
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
-
         private String username;
         private String email;
         private String password;
         private String role;
-        private String projet;
+//        private String projet;
         private int age;
 
         @ManyToMany(fetch = FetchType.EAGER)
         @JoinTable(
-                name = "user_roles",
-                joinColumns = @JoinColumn(name = "user_id"),
+                name = "users_roles",
+                joinColumns = @JoinColumn(name = "username"),
                 inverseJoinColumns = @JoinColumn(name = "role_id")
         )
         private Set<Role> roles = new HashSet<>();

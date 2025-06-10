@@ -1,7 +1,7 @@
 package initiativep.controller;
 
 import initiativep.model.RendezVous;
-import initiativep.repository.RendezVousRepository;
+import initiativep.repository.jpa.RendezVousRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { loginService } from '../services/loginService';
 
 const AuthContext = createContext(null);
@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (username, password) => {
         try {
-        const data = await loginService.login(username, password);
+        const data = await loginService(username, password);
         setAuth(data);
         return data;
         } catch (error) {
@@ -16,12 +16,12 @@ export const AuthProvider = ({ children }) => {
         throw error;
         }
     };
-    const register = async (username, password, role) => {
+    const register = async (username, password, email, role, age) => {
         try {
-            const response = await fetch('http://localhost:8080/users', {
+            const response = await fetch('http://localhost:8080/auth/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password, role }),
+            body: JSON.stringify({ username, password, email, role, age }),
             });
 
             if (!response.ok) return false;
@@ -47,4 +47,4 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => useContext(AuthContext);
-export { AuthContext};
+export { AuthContext };

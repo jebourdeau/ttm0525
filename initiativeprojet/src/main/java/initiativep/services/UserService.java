@@ -2,8 +2,9 @@ package initiativep.services;
 
 import initiativep.dto.UserDto;
 import initiativep.model.User;
-import initiativep.repository.UserRepository;
+import initiativep.repository.jpa.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,9 @@ public class UserService{
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     public List<UserDto> getAllUsers(){
         return 
         userRepository.findAll().stream().map(this::convertToDTO).collect(Collectors.toList());
@@ -23,11 +27,11 @@ public class UserService{
     public Optional<User>findByUsername(String username){
         return userRepository.findByUsername(username);
     }
-    public Optional<User> findById(Long id){
+    public Optional<User> findById(String id){
         return userRepository.findById(id);
     }
 
-    public UserDto getUserById(Long id){
+    public UserDto getUserById(String id){
         return userRepository.findById(id).map(this::convertToDTO).orElse(null);
     }
     public UserDto createUSer(UserDto userDto){
@@ -35,25 +39,27 @@ public class UserService{
         user= userRepository.save(user);
         return convertToDTO(user);
     }
-    public void deleteUser(Long id){
+    public void deleteUser(String id){
         userRepository.deleteById(id);
     }
     private UserDto convertToDTO(User user){
         UserDto userDto = new UserDto();
-        userDto.setId(user.getId());
-        userDto.setUsername(user.getUsername());
         userDto.setRole(user.getRole());
         userDto.setEmail(user.getEmail());
-        userDto.setProjet(user.getProjet());
+        userDto.setAge(user.getAge());
+        userDto.setUsername(user.getUsername());
+        userDto.setPassword(passwordEncoder.encode(user.getPassword()));
+//        userDto.setProjet(user.getProjet());
         return userDto;
     }
     private User convertToEntity(UserDto userDto){
         User user = new User();
-        user.setId(userDto.getId());
         user.setUsername(userDto.getUsername());
         user.setRole(userDto.getRole());
         user.setEmail(userDto.getEmail());
-        user.setProjet(userDto.getProjet());
+        user.setAge(userDto.getAge());
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+//        user.setProjet(userDto.getProjet());
         return user;
     }
 }

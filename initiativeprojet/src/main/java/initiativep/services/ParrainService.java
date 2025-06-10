@@ -2,7 +2,7 @@ package initiativep.services;
 
 import java.util.NoSuchElementException;
 
-import initiativep.repository.ParrainRepository;
+import initiativep.repository.jpa.ParrainRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,11 +24,11 @@ public class ParrainService {
         return parrainRepository.save(parrain);
     }
 
-    public void deleteParrain(Long id){
+    public void deleteParrain(String id){
         parrainRepository.deleteById(id);
     }
-    public Parrain updateParrain(Long id, ParrainDto parrainDTO){
-        Parrain parrain= parrainRepository.findbyIdParrain(id).orElseThrow(()-> new NoSuchElementException("Parrain not found"));
+    public Parrain updateParrain(String id, ParrainDto parrainDTO){
+        Parrain parrain= parrainRepository.findById(id).orElseThrow(()-> new NoSuchElementException("Parrain not found"));
         parrain.setUsername(parrainDTO.getUsername());
         parrain.setEmail(parrainDTO.getEmail());
         parrain.setPassword(parrainDTO.getPassword());

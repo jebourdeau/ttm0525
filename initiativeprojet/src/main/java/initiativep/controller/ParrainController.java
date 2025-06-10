@@ -21,12 +21,12 @@ public class ParrainController {
     }
 
     @DeleteMapping("/{id}")
-    public  ResponseEntity<Void> deleteParrain(@PathVariable Long id){
+    public  ResponseEntity<Void> deleteParrain(@PathVariable String id){
     parrainService.deleteParrain(id);
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Parrain> updateParrain(@PathVariable Long id, @RequestBody ParrainDto parrainDto){
+    public ResponseEntity<Parrain> updateParrain(@PathVariable String id, @RequestBody ParrainDto parrainDto){
      Parrain updateParrain = parrainService.updateParrain(id, parrainDto);
      return new ResponseEntity<>(updateParrain, HttpStatus.OK);
     }

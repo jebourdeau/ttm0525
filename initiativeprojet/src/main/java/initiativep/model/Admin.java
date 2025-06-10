@@ -13,15 +13,13 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "admin")
+//@DiscriminatorValue("admin")
 public class Admin extends User {
-        @Id
-        private Long id;
-        private String username;
 
         @ManyToMany(fetch = FetchType.EAGER)
         @JoinTable(
-                name = "user_roles",
-                joinColumns = @JoinColumn(name = "user_id"),
+                name = "users_roles",
+                joinColumns = @JoinColumn(name = "username"),
                 inverseJoinColumns = @JoinColumn(name = "role_id")
         )
         private Set<Role> roles = new HashSet<>();

@@ -1,12 +1,9 @@
 import { useCallback, useState } from "react";
-import "../../styles/login.css";
 import { useAuth } from "../../context/AuthContext";
+import "../../styles/login.css";
 import Loader from "../structure/Loader";
 
 export const Loginuser = () => {
-    const [role, setRole] = useState('UTILISATEUR');
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [isLogin, setIsLogin] = useState(true);
     const { login, register } = useAuth();
@@ -16,17 +13,18 @@ export const Loginuser = () => {
         e.preventDefault();
         setAuthLoading(true);
         setError('');
-
+        const {username, password, role, age, email} = Object.fromEntries(new FormData(e.target));
+        console.log(isLogin, username, password, role, age, email);
         const success = isLogin
         ? await login(username, password)
-        : await register(username, password, role);
+        : await register(username, password, email, role, age);
 
         if (!success) {
         setError(isLogin ? 'Échec de la connexion' : 'Échec de l\'inscription');
         }
 
         setAuthLoading(false);
-    }, [username, password, isLogin, login, register]);
+    }, [isLogin, login, register]);
 
     return (
         <div className="login-container">
@@ -37,23 +35,32 @@ export const Loginuser = () => {
             <label>Identifiant</label>
             <input
             type="text"
-            name="Identifiant"
+            name="username"
             placeholder="Identifiant"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
             />
             <label>Mot de passe</label>
             <input
             type="password"
-            name="Mot de passe"
+            name="password"
             placeholder="Mot de passe"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
             />
+            
             {!isLogin && (
             <>
+                <label>Email</label>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                />
+                <label>Âge</label>
+                <input
+                    type="number"
+                    name="age"
+                    placeholder="Âge"
+                />
                 <label>Rôle</label>
-                <select value={role} onChange={(e) => setRole(e.target.value)}>
+                <select name="role">
                 <option value="UTILISATEUR">Utilisateur</option>
                 <option value="PARRAIN">Parrain</option>
                 <option value="ADMIN">Admin</option>

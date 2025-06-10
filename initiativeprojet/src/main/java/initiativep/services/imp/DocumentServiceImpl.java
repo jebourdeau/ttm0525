@@ -2,7 +2,7 @@ package initiativep.services.imp;
 
 
 import initiativep.model.Document;
-import initiativep.repository.DocumentRepository;
+import initiativep.repository.jpa.DocumentRepository;
 import initiativep.services.DocumentService;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +20,7 @@ public class DocumentServiceImpl implements DocumentService {
         return documentRepository.save(document);
     }
     @Override
-    public Optional<Document> findById(Long id) {
+    public Optional<Document> findById(String id) {
         return documentRepository.findById(id);
     }
     @Override
@@ -28,11 +28,11 @@ public class DocumentServiceImpl implements DocumentService {
         return documentRepository.findAll();
     }
     @Override
-    public List<Document> findByUserId(Long userId) {
-        return documentRepository.findByUserId(userId);
+    public List<Document> findByUser(String user) {
+        return documentRepository.findByUser(user);
     }
     @Override
-    public void deleteDocument(Long id) {
+    public void deleteDocument(String id) {
         documentRepository.deleteById(id);
     }
 }
