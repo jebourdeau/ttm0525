@@ -3,9 +3,7 @@ package initiativep.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -14,8 +12,8 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 @Inheritance(strategy = InheritanceType.JOINED)
-//@DiscriminatorColumn(name="role",
-//        discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(name="role",
+        discriminatorType = DiscriminatorType.STRING)
 public class User {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,17 +21,7 @@ public class User {
         private String username;
         private String email;
         private String password;
-        private String role;
-//        private String projet;
         private int age;
-
-        @ManyToMany(fetch = FetchType.EAGER)
-        @JoinTable(
-                name = "users_roles",
-                joinColumns = @JoinColumn(name = "username"),
-                inverseJoinColumns = @JoinColumn(name = "role_id")
-        )
-        private Set<Role> roles = new HashSet<>();
 
         @OneToMany(mappedBy = "user")
         private List<Projet> projets;

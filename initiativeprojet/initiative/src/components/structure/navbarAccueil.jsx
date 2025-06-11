@@ -7,15 +7,22 @@ export const NavbarAccueil = () => {
     const { auth, logout } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    if (!auth) return null;
+    if (!auth) {
+        return (
+        <nav className="navbar">
+            <div className="navbar-left">
+            <Link to="/">Accueil</Link>
+            </div>
+        </nav>
+        );
+    }
 
     const handleLogout = () => {
         logout();
         navigate('/');
     };
-
-    const { user, porteur, admin, parrain } = auth;
-
+    const { username, role } = auth;
+    console.log(username, role);
     const commonLinks = (
         <>
             <Link to="/messagerie">Messagerie</Link>
@@ -27,26 +34,26 @@ export const NavbarAccueil = () => {
     return (
         <nav className="navbar">
             <div className="navbar-left">
-                {user && (
+                {username && (
                     <>
                         {commonLinks}
                         <Link to="/profils">Profils</Link>
                         <Link to="/apropos">A Propos</Link>
                     </>
                 )}
-                {porteur && (
+                {role == "porteur" && (
                     <>
                         {commonLinks}
                         <Link to="/apropos">A Propos</Link>
                     </>
                 )}
-                {admin && (
+                {role == "admin" && (
                     <>
                         <Link to="/profils">Profils</Link>
                         {commonLinks}
                     </>
                 )}
-                {parrain && (
+                {role == "parrain" && (
                     <>
                         <Link to="/profils">Profils</Link>
                         {commonLinks}

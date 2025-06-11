@@ -27,6 +27,7 @@ public class SpringSecurity {
 
     private final CustomUserDetailsService customUserDetailsService;
     private final JwtTokenProvider jwtTokenProvider;
+    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public SpringSecurity(CustomUserDetailsService customUserDetailsService, JwtTokenProvider jwtTokenProvider) {
         this.customUserDetailsService = customUserDetailsService;
@@ -45,8 +46,8 @@ public class SpringSecurity {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/register").anonymous()
-                        .requestMatchers("/api/auth/*").permitAll()
+                        .requestMatchers("/auth/register", "/auth/login").anonymous()
+                        .requestMatchers("/auth/*").permitAll()
                         .anyRequest().authenticated()
                 );
 
@@ -54,7 +55,7 @@ public class SpringSecurity {
         return http.build();}
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return this.passwordEncoder;
     }
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {

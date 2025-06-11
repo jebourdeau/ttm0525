@@ -13,19 +13,10 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "porteur")
-//@DiscriminatorValue("porteur")
+@DiscriminatorValue("porteur")
 public class Porteur extends User{
-    private String title;
-    private String description;
-
-    @OneToOne
-//    @JoinColumn(name = "porteur_id", nullable = false)
-    private Porteur porteur;
 
     @ManyToOne
-//    @JoinColumn(name = "parrain_id")
     private Parrain parrain;
-
-    private Set<Role> roles = new HashSet<>();
 
 }

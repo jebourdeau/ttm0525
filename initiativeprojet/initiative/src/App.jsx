@@ -28,23 +28,26 @@ function App() {
 function MainApp() {
   const { auth } = useAuth();
 
-  if (!auth) {
-    return <Loginuser />;
-  }
+  // if (!auth) {
+  //   return <Loginuser />;
+  // }
 
   return (
     <>
       <Header />
       <Body />
       <Routes>
-        <Route path="/login" element={<Loginuser />} />
-        <Route path="/home" element={<Accueil />} />
+        {!auth ? (<Route path="*" element={<Loginuser />} />
+        ) : (<>
+        
+        <Route path="/" element={<Accueil />} />
         <Route path="/notfound" element={<NotFound />} />
         <Route path="/apropos" element={<Apropos />} />
         <Route path="/documents" element={<Documents />} />
         <Route path="/messagerie" element={<Messagerie />} />
         <Route path="/profils" element={<Profils />} />
         <Route path="/rendezvous" element={<Rendezvous />} />
+        </>)}
       </Routes>
       <Footer />
     </>

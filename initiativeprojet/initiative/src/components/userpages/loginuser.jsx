@@ -61,9 +61,9 @@ export const Loginuser = () => {
                 />
                 <label>Rôle</label>
                 <select name="role">
-                <option value="UTILISATEUR">Utilisateur</option>
-                <option value="PARRAIN">Parrain</option>
-                <option value="ADMIN">Admin</option>
+                <option value="porteur">Utilisateur</option>
+                <option value="parrain">Parrain</option>
+                <option value="admin">Admin</option>
                 </select>
             </>
             )}
