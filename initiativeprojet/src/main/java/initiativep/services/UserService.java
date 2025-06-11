@@ -27,6 +27,9 @@ public class UserService{
     public Optional<User>findByUsername(String username){
         return userRepository.findByUsername(username);
     }
+    public Optional<User>findByUsernameAndPassword(String username, String password){
+        return userRepository.findByUsernameAndPassword(username, password);
+    }
     public Optional<User> findById(String id){
         return userRepository.findById(id);
     }
@@ -49,7 +52,6 @@ public class UserService{
         userDto.setAge(user.getAge());
         userDto.setUsername(user.getUsername());
         userDto.setPassword(passwordEncoder.encode(user.getPassword()));
-//        userDto.setProjet(user.getProjet());
         return userDto;
     }
     private User convertToEntity(UserDto userDto){

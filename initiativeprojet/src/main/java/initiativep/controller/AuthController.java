@@ -1,6 +1,7 @@
 package initiativep.controller;
 
 import initiativep.dto.*;
+import initiativep.model.User;
 import initiativep.security.JwtService;
 import initiativep.security.JwtTokenProvider;
 import initiativep.services.AuthService;
@@ -18,8 +19,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
-
 @Controller
 @RestController
 @RequestMapping("/auth")
@@ -34,18 +33,14 @@ public class AuthController {
         this.authService = authService;
         this.jwtService = jwtService;
         this.userService = userService;
+        this.authenticationManager = authenticationManager;
 
     }
     @PostMapping("/login")
     public ResponseEntity<JwtAuthenticationResponse> authenticateUser(@RequestBody LoginRequest loginRequest) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsername(),
-                        loginRequest.getPassword()
-                )
-        );
-        String jwt = tokenProvider.generateToken(authentication.getName());
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt,null, null, null));
+        User user = userService.findByUsernameAndPassword(loginRequest.getUsername(), loginRequest.getPassword()).orElseThrow(()->new RuntimeException("Wrong Credentials"));
+        String jwt = tokenProvider.generateToken(user.getUsername());
+        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt,"Bearer", user.getId(), user.getUsername()));
     }
     @PostMapping("/register")
     public UserDto createUser(@RequestBody UserDto userDto){

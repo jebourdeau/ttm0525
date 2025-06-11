@@ -29,7 +29,6 @@ public class UserController {
         String email = authentication.getName();
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Utilisateur non trouvé"));
-
         return ResponseEntity.ok(user);
     }
 
@@ -47,5 +46,6 @@ public class UserController {
          userService.deleteUser(id);
          return  ResponseEntity.noContent().build();
      }
+
 }
 
