@@ -46,7 +46,7 @@ public class UserService{
     public UserDto getUserById(String id){
         return userRepository.findById(id).map(this::convertToDTO).orElse(null);
     }
-    public UserDto createUSer(UserDto userDto){
+    public User createUSer(UserDto userDto){
         User user = convertToEntity(userDto);
         if(user instanceof Admin) {
             user = adminRepository.saveAndFlush((Admin)user);
@@ -57,8 +57,7 @@ public class UserService{
         } else {
             throw new RuntimeException("Invalid user type");
         }
-        user = userRepository.saveAndFlush(user);
-        return convertToDTO(user);
+        return userRepository.saveAndFlush(user);
     }
     public void deleteUser(String id){
         userRepository.deleteById(id);
@@ -103,7 +102,6 @@ public class UserService{
         user.setUsername(userDto.getUsername());
         user.setEmail(userDto.getEmail());
         user.setAge(userDto.getAge());
-
         // Ne pas encoder à nouveau si le mot de passe n’a pas changé
         if (userDto.getPassword() != null && !userDto.getPassword().isBlank()) {
             user.setPassword(passwordEncoder.encode(userDto.getPassword()));

@@ -2,6 +2,7 @@ package initiativep.controller;
 
 import initiativep.dto.*;
 import initiativep.model.User;
+import initiativep.repository.jpa.UserRepository;
 import initiativep.security.JwtTokenProvider;
 import jakarta.annotation.security.PermitAll;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,7 @@ public class AuthController {
     private final UserService userService;
     private final JwtTokenProvider tokenProvider;
     private final PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
 
     @PostMapping("/login")
     public ResponseEntity<JwtAuthenticationResponse> authenticateUser(@RequestBody LoginRequest loginRequest) {
@@ -39,10 +41,13 @@ public class AuthController {
         String jwt = tokenProvider.generateToken(user);
         return ResponseEntity.ok(new JwtAuthenticationResponse(jwt,"Bearer", user.getId(), user.getUsername()));
     }
-        @PostMapping("/register")
-    public UserDto createUser(@RequestBody UserDto userDto){
-        return userService.createUSer(userDto);
+    @PostMapping("/register")
+    public ResponseEntity<JwtAuthenticationResponse> createUser(@RequestBody UserDto userDto){
+        User createdUser = userService.createUSer(userDto);
+        String jwt = tokenProvider.generateToken(createdUser);
+        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt,"Bearer", createdUser.getId(), createdUser.getUsername()));
     }
+    
     @PostMapping("/logout")
     @PermitAll
     public ResponseEntity<?> logout() {

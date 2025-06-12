@@ -25,9 +25,7 @@ export const AuthProvider = ({ children }) => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password, email, role, age }),
             });
-
             if (!response.ok) return false;
-
             const data = await response.json();
             setAuth(jwtDecode(data.accessToken));
             return true;
