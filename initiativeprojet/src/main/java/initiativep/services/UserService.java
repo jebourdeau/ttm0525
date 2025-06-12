@@ -95,4 +95,22 @@ public class UserService{
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         return user;
     }
+
+    public UserDto updateUser(String id, UserDto userDto) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
+
+        user.setUsername(userDto.getUsername());
+        user.setEmail(userDto.getEmail());
+        user.setAge(userDto.getAge());
+
+        // Ne pas encoder à nouveau si le mot de passe n’a pas changé
+        if (userDto.getPassword() != null && !userDto.getPassword().isBlank()) {
+            user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        }
+
+        userRepository.save(user);
+        return convertToDTO(user);
+    }
+
 }

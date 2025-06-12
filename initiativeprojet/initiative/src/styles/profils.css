@@ -56,3 +56,6 @@
 .carousel-button.next {
     right: -40px;
 }
+.mon-profil-form{
+        align-items: end;
+}

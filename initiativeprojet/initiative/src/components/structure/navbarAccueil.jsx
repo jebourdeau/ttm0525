@@ -22,27 +22,14 @@ export const NavbarAccueil = () => {
         navigate('/');
     };
     const { username, role } = auth.payload;
-    console.log('User infos', username, role, auth);
-    // const commonLinks = (
-    //     <>
-    //         <Link to="/messagerie">Messagerie</Link>
-    //         <Link to="/rendezvous">Rendez-vous</Link>
-    //         <Link to="/documents">Documents</Link>
-            
-    //     </>
-    // );
+    
 
     return (
         <nav className="navbar">
             <div className="navbar-left">
-                {username && (
-                    <>
-                        {/* {commonLinks} */}
-                    </>
-                )}
+                {/* {username} */}
                 {role === "porteur" && (
                     <>
-                        {/* {commonLinks} */}
                         <Link to="/apropos">A Propos</Link>
                         <Link to="/rendezvous">Rendez-vous</Link>
                         <Link to="/monprofils">Mon Profils</Link>
@@ -52,20 +39,19 @@ export const NavbarAccueil = () => {
                 )}
                 {role === "admin" && (
                     <>
+                        <Link to="/rendezvous">Rendez-vous</Link>
                         <Link to="/profils">Profils</Link>
                         <Link to="/monprofils"> Mon Profils</Link>
                         <Link to="/documents">Documents</Link>
-                        {/* {commonLinks} */}
                     </>
                 )}
                 {role === "parrain" && (
                     <>
-                        <Link to="/profils">Profils</Link>
                         <Link to="/rendezvous">Rendez-vous</Link>
+                        <Link to="/documents">Documents</Link>
+                        <Link to="/profils">Profils</Link>
                         <Link to="/messagerie">Messagerie</Link>
                         <Link to="/monprofils">Mon Profils</Link>
-                        <Link to="/documents">Documents</Link>
-                        {/* {commonLinks} */}
                     </>
                 )}
             </div>

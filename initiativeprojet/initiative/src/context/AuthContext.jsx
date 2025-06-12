@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
             if (!response.ok) return false;
 
             const data = await response.json();
-            setAuth(data);
+            setAuth(jwtDecode(data.accessToken));
             return true;
         } catch (error) {
             console.error('Erreur lors de l’inscription :', error);

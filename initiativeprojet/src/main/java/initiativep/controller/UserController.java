@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +25,7 @@ public class UserController {
     private  UserRepository userRepository;
     @Autowired
     private UserService userService;
-    
+
     public ResponseEntity<User> getCurrentUser(Authentication authentication) {
         String email = authentication.getName();
         User user = userRepository.findByEmail(email)
@@ -46,6 +48,13 @@ public class UserController {
          userService.deleteUser(id);
          return  ResponseEntity.noContent().build();
      }
+    @PutMapping("/{id}")
+    public ResponseEntity<UserDto> updateUser(@PathVariable String id, @RequestBody UserDto userDto) {
+        UserDto updatedUser = userService.updateUser(id, userDto);
+        return ResponseEntity.ok(updatedUser);
+    }
+
+
 
 }
 
