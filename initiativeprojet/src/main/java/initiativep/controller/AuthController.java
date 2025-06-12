@@ -36,7 +36,7 @@ public class AuthController {
              throw new RuntimeException("Wrong Credentials");
         }
         System.out.println("user = " + user);
-        String jwt = tokenProvider.generateToken(user.getUsername());
+        String jwt = tokenProvider.generateToken(user);
         return ResponseEntity.ok(new JwtAuthenticationResponse(jwt,"Bearer", user.getId(), user.getUsername()));
     }
         @PostMapping("/register")

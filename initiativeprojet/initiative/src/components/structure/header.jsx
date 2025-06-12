@@ -8,7 +8,6 @@ const Header = () => {
     const navigate = useNavigate();
     return (
     <header className="App-header">
-        <button className="backhome" type="button" onClick={() => navigate("./")}>Accueil</button>
         <img src={logo2} className="match" alt="TTM" title="Trouve Ton Match"/>
         <NavbarAccueil/>
     </header>

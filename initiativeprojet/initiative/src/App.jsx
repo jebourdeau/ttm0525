@@ -13,6 +13,7 @@ import Profils  from './components/pages/boitesOutils/profils';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { Accueil } from './components/pages/accueil';
 import {Documents} from './components/pages/boitesOutils/documents';
+import MonProfils from './components/pages/boitesOutils/monProfils';
 
 
 function App() {
@@ -47,6 +48,8 @@ function MainApp() {
         <Route path="/messagerie" element={<Messagerie />} />
         <Route path="/profils" element={<Profils />} />
         <Route path="/rendezvous" element={<Rendezvous />} />
+        <Route path="*" element={<NotFound />} />
+        <Route path= "/monprofils" element={<MonProfils/>} />
         </>)}
       </Routes>
       <Footer />

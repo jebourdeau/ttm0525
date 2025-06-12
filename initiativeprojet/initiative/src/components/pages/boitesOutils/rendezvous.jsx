@@ -29,7 +29,7 @@ const Rendezvous = () => {
             time: time,
             details: appointment,
         };
-        const response = await fetch('http://localhost:8080/rendezvous',{
+        const response = await fetch('http://localhost:8080/api/rendezvous',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json',
@@ -70,7 +70,7 @@ return (
                         required
                         className='rdvTime'
                     />
-                    <button className='register' type="submit">
+                    <button className='button_submit' type="submit">
                         Enregistrer
                     </button>
                 </form>

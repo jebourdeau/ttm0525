@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react';
+import { jwtDecode } from '../services/jwt';
 import { loginService } from '../services/loginService';
 
 const AuthContext = createContext(null);
@@ -9,7 +10,8 @@ export const AuthProvider = ({ children }) => {
     const login = async (username, password) => {
         try {
         const data = await loginService(username, password);
-        setAuth(data);
+        const userInfo = jwtDecode(data.accessToken);
+        setAuth(userInfo);
         return data;
         } catch (error) {
         console.error('Login failed:', error);

@@ -59,8 +59,8 @@ export const Loginuser = () => {
                     name="age"
                     placeholder="Âge"
                 />
-                <label>Rôle</label>
-                <select name="role">
+                <label >Rôle</label>
+                <select name="role" >
                 <option value="porteur">Utilisateur</option>
                 <option value="parrain">Parrain</option>
                 <option value="admin">Admin</option>
@@ -75,9 +75,9 @@ export const Loginuser = () => {
         </form>
         <div className="toggle-auth">
             {isLogin ? (
-            <p>Pas encore de compte ? <button onClick={() => setIsLogin(false)}>Créer un compte</button></p>
+            <p>Pas encore de compte ? <button className="button_submit" onClick={() => setIsLogin(false)}>Créer un compte</button></p>
             ) : (
-            <p>Déjà inscrit ? <button onClick={() => setIsLogin(true)}>Se connecter</button></p>
+            <p>Déjà inscrit ? <button className="button_submit" onClick={() => setIsLogin(true)}>Se connecter</button></p>
             )}
         </div>
         </div>

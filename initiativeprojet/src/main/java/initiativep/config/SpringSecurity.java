@@ -48,6 +48,8 @@ public class SpringSecurity {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/register", "/auth/login").anonymous()
                         .requestMatchers("/auth/*").permitAll()
+                        .requestMatchers("/api/*").permitAll()
+                        .requestMatchers("/api/documents/*").permitAll()
                         .anyRequest().authenticated()
                 );
 

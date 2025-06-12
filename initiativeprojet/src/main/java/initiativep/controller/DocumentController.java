@@ -43,6 +43,12 @@ public class DocumentController {
         return "pages/documents/upload";
     }
 
+    @GetMapping("/list")
+    public List<Document> getAllDocuments() {
+         return documentService.findAll();
+    }
+
+
     @PostMapping("/upload")
     public String uploadDocument(@ModelAttribute UploadDocumentDTO uploadDocument, Authentication auth) throws IOException {
         User user = userService.findByUsername("").orElseThrow(()-> new RuntimeException("User not found"));

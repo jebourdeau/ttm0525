@@ -2,7 +2,9 @@ package initiativep.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.core.serializer.Deserializer;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
