@@ -1,5 +1,20 @@
 # Mise en route en Local sur un IDE
 
+## Technologies utilisées :
+Front en React,
+Back en Spring Boot,
+Spring Security, JWT, JPA, Hibernate,
+Architecture en Couche,
+Base de Donnée en PostGreSQL,
+Migration via Flyway,
+test via Mock et Mockito,
+Docker,
+CI,
+Cahier des charges en Markdown,
+Presentation en PDF,
+Git,
+
+
 ## Installation coté front :
 ### placer vous dans le dossier ttm0525/initiativeprojet/initiative-front
 - npm install
@@ -26,7 +41,9 @@ Pour Les profils, afin de les activer en Dynamique il suffira juste de supprimer
 
 La Page monProfils c'est à modifier le profil individuel.
 
-Votre base de donnée peut évoluer pour le moment elle ne comporte que 10 tables, en fonction des besoins.
+Votre base de donnée peut évoluer pour le moment elle ne comporte que 10 tables, en fonction des besoins. 
+
+
 
 
 # Mise en route par Docker
