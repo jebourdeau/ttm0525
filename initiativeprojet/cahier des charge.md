@@ -13,8 +13,7 @@ et améliorer la communication.
 ### Fonctionnalités :
 Inscription et Authentification 
 Profil Utilisateur : Compétences, expériences, projet en cours ; 
-Mise en Relation : créer un Matching sur les compétences et besoins ; 
-Système de messagerie : chatbox ou messagerie sécurisée avec pop-up 
+Système de messagerie : messagerie sécurisée avec pop-up 
 notifications ; 
 
 Boite à outils : calendrier, les missions et objectif ; 
@@ -26,12 +25,8 @@ Sécurisation des données
 
 Design :  
 - Intuitif et ergonomique, facile d’utilisation. 
-
-Budget : 
-- Estimation des coûts de développement, de déploiement et de maintenance.
-
-Il va falloir compter environ 300 jours hommes
+-- Design moderne et épuré
 
 Conclusion :  
-- Une application complète et évolutive, afin de répondre aux attentes de 
+- Une application fonctionnelle et évolutive, afin de répondre aux attentes de 
 l’association Initiative Deux Sèvres. 

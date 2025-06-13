@@ -14,6 +14,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import { Accueil } from './components/pages/accueil';
 import {Documents} from './components/pages/boitesOutils/documents';
 import MonProfils from './components/pages/boitesOutils/monProfils';
+import CookieBanner from './components/structure/cookieBanner';
 
 
 function App() {
@@ -29,18 +30,14 @@ function App() {
 function MainApp() {
   const { auth } = useAuth();
 
-  // if (!auth) {
-  //   return <Loginuser />;
-  // }
-
   return (
     <>
       <Header />
+      <CookieBanner />
       <Body />
       <Routes>
         {!auth ? (<Route path="*" element={<Loginuser />} />
         ) : (<>
-        
         <Route path="/" element={<Accueil />} />
         <Route path="/notfound" element={<NotFound />} />
         <Route path="/apropos" element={<Apropos />} />
