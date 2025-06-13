@@ -23,10 +23,10 @@ export const NavbarAccueil = () => {
     };
     const { username, role } = auth.payload;
     
-
     return (
         <nav className="navbar">
             <div className="navbar-left">
+            
                 {/* {username} */}
                 {role === "porteur" && (
                     <>
@@ -47,7 +47,6 @@ export const NavbarAccueil = () => {
                 )}
                 {role === "parrain" && (
                     <>
-                        <Link to="/rendezvous">Rendez-vous</Link>
                         <Link to="/documents">Documents</Link>
                         <Link to="/profils">Profils</Link>
                         <Link to="/messagerie">Messagerie</Link>
