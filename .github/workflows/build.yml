@@ -6,16 +6,14 @@ on:
       - main
       - beta
 
-
 # Définir les permissions nécessaires pour ce workflow
 permissions:
-  contents: write # accès à d'autres permissions via crtl+espace pour voir les possibilités
+  contents: write
 
 jobs:
   # Job pour obtenir la version
   get-version:
     # Utilise (importe) un workflow externe pour obtenir la version
-    # github-actions est un repo communautaire
     uses: shiipou/github-actions/.github/workflows/get-version.yml@main
     with: # paramètres à rajouter au workflow générique récupéré
       release-branches: '^(main)$'
