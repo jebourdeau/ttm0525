@@ -33,21 +33,20 @@ public class AuthController {
         String password = loginRequest.getPassword();
         User user = userService.findByUsername(username).
                 orElseThrow(
-                        ()->new RuntimeException("Wrong Credentials"));
+                        () -> new RuntimeException("Wrong Credentials"));
         if (!passwordEncoder.matches(password, user.getPassword())) {
-             throw new RuntimeException("Wrong Credentials");
+            throw new RuntimeException("Wrong Credentials");
         }
         System.out.println("user = " + user);
         String jwt = tokenProvider.generateToken(user);
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt,"Bearer", user.getId(), user.getUsername()));
+        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, "Bearer", user.getId(), user.getUsername()));
     }
     @PostMapping("/register")
-    public ResponseEntity<JwtAuthenticationResponse> createUser(@RequestBody UserDto userDto){
+    public ResponseEntity<JwtAuthenticationResponse> createUser(@RequestBody UserDto userDto) {
         User createdUser = userService.createUSer(userDto);
         String jwt = tokenProvider.generateToken(createdUser);
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt,"Bearer", createdUser.getId(), createdUser.getUsername()));
+        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, "Bearer", createdUser.getId(), createdUser.getUsername()));
     }
-    
     @PostMapping("/logout")
     @PermitAll
     public ResponseEntity<?> logout() {
